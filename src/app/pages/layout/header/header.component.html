@@ -1,0 +1,14 @@
+<ion-header class="ion-no-border">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <ion-button fill="clear" [routerLink]="['/']">
+          <ion-label class="ion-text-wrap">Wookie<br>Movies</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col offset="5" size="4">
+        <ion-searchbar mode="ios" placeholder="" (ionChange)="onSearch($event)" (ionClear)="onClear($event)"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>

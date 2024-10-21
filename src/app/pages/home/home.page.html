@@ -1,0 +1,61 @@
+<ion-content>
+  <div class="container">
+
+    <app-header [moviesByFilter]="moviesByFilter" (termSearch)="onSearch($event)" (clearFilter)="onClear($event)"></app-header>
+
+    <div id="page-content">
+
+      <ion-item *ngIf="moviesByFilter.length > 0; else byGenreBlock">
+        <ion-label>
+          <h2>Search Results</h2>
+        </ion-label>
+
+        <swiper-container slides-per-view="5">
+
+          <swiper-slide *ngFor="let movie of moviesByFilter;">
+
+            <ion-card>
+              <img alt="{{ movie.title }}" src="{{ movie.backdrop }}" />
+
+              <ion-button fill="clear" expand="full" [routerLink]="['/details', movie.slug]" >
+                Voir plus
+                <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+              </ion-button>
+            </ion-card>
+
+          </swiper-slide>
+
+        </swiper-container>
+      </ion-item>
+
+      <ng-template #byGenreBlock>
+
+        <ion-item *ngFor="let movieByGenre of movies; let i = index">
+          <ion-label>
+            <h2>{{ movieByGenre[0].genre }}</h2>
+          </ion-label>
+
+          <swiper-container slides-per-view="5">
+
+            <swiper-slide *ngFor="let movie of movieByGenre;">
+
+              <ion-card>
+                <img alt="{{ movie.title }}" src="{{ movie.backdrop }}" />
+
+                <ion-button fill="clear" expand="full" [routerLink]="['/details', movie.slug]" >
+                  Voir plus
+                  <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+                </ion-button>
+              </ion-card>
+
+            </swiper-slide>
+
+          </swiper-container>
+        </ion-item>
+
+      </ng-template>
+
+    </div>
+
+  </div>
+</ion-content>
